@@ -19,8 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
     self.imagePicker = [[UIImagePickerController alloc] init]; // 1
     
@@ -70,6 +68,7 @@
         //self.detailTitle.text = [self.detailItem todoTitle];
         self.editTitleLabel.text = [self.modelObject addText];
         self.editDate.date = [self.modelObject addDate];
+        self.editDate.locale = [NSLocale currentLocale];
         self.filePathToDeleteImage = [self.modelObject addImagePath];
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -109,7 +108,7 @@
     //get count of items in directory
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSArray *filelist= [filemgr contentsOfDirectoryAtPath:documentsPath error:nil];
-    int count = [filelist count];
+    int count = (int)[filelist count];
     
     //set path and file name and save image there
     NSString *imageName = [NSString  stringWithFormat:@"savedImage%d.png", count+1];
@@ -122,6 +121,9 @@
     //modelObject.addImagePath = savedImagePath;
     
     // Add to Realm with transaction
+    //NSString *str = [self.editDate.date descriptionWithLocale:[NSLocale currentLocale]];
+    self.editDate.locale = [NSLocale currentLocale];
+    
     [self.realmObject beginWriteTransaction];
     
     self.modelObject.addDate = self.editDate.date;
@@ -153,19 +155,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    //self.pageImageView.image = selectedImage;
-    //self.ImageViewImage = selectedImage;
-    
-    //self.pageModelObject.pageImage = selectedImage;
     
     self.editImageView.image = selectedImage;
-    
-    //[self.delegate adjustPage:self.ob atIndex:self.index];
-    
-    // self.pageImageView.image = selectedImage;
-    
-    //[self.delegate savePageContent:self.pageModelObject];
-    
+        
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 

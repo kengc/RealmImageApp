@@ -56,7 +56,7 @@
     for(AddModel *am in self.addObject){
         modelObject = am;
         NSString *appFile = [self.documentsDirectory stringByAppendingPathComponent:am.addImageName];
-        NSLog(@"appFile: %@", appFile);
+        //NSLog(@"appFile: %@", appFile);
         //NSData *myData = [[[NSData alloc] initWithContentsOfFile:appFile] autorelease];
         //NSData *myData = [[NSData alloc] initWithContentsOfFile:appFile];
         //NSLog(@"mydata: %@", myData);
@@ -93,7 +93,8 @@
     
     cell.imageCell.image = [UIImage imageWithData:myData];
     cell.imageTitleCell.text = om.addText;
-    cell.imageDateDell.text = [NSString stringWithFormat:@"%@", om.addDate];
+    cell.imageDateDell.text = [om.addDate descriptionWithLocale:[NSLocale currentLocale]];
+    //[NSString stringWithFormat:@"%@", om.addDate];
     
     
     return cell;

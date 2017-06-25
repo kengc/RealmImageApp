@@ -56,7 +56,7 @@
     //get count of items in directory
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSArray *filelist= [filemgr contentsOfDirectoryAtPath:documentsDirectory error:nil];
-    int count = [filelist count];
+    int count = (int)[filelist count];
     
     //set path and file name and save image there
     NSString *imageName = [NSString  stringWithFormat:@"savedImage%d.png", count+1];
