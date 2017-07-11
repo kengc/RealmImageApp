@@ -31,15 +31,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)doneAction:(UIButton *)sender {
     
     AddModel *modelObject = [[AddModel alloc] init];
@@ -98,18 +90,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    //self.pageImageView.image = selectedImage;
-    //self.ImageViewImage = selectedImage;
-    
-    //self.pageModelObject.pageImage = selectedImage;
     
     self.addImage.image = selectedImage;
-    
-    //[self.delegate adjustPage:self.ob atIndex:self.index];
-    
-   // self.pageImageView.image = selectedImage;
-    
-    //[self.delegate savePageContent:self.pageModelObject];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }

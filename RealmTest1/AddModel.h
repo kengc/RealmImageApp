@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <Realm/Realm.h>
 
+
 @interface AddModel : RLMObject
 
 @property (nonatomic) NSString *addText;

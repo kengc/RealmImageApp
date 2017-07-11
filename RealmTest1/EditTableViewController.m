@@ -34,11 +34,7 @@
 -(void)viewTap:(UITapGestureRecognizer *)sender{
     
     [self addImageAction];
-    //UIColor *color = [sender.view.backgroundColor isEqual: [UIColor purpleColor]] ? [UIColor orangeColor] : [UIColor purpleColor];
-    
-    
-    //sender.view.backgroundColor = color;
-    
+ 
 }
 
 
@@ -84,19 +80,12 @@
 - (IBAction)doneAction:(UIButton *)sender {
     
     
-    //delete old image associated with this object
-    //NSString *appFile = [self.documentsDirectory stringByAppendingPathComponent:om.addImageName];
-    
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    
-   // NSString *filePath = [documentsPath stringByAppendingPathComponent:self.filePathToDeleteImage];
+
     NSError *error;
     BOOL success = [fileManager removeItemAtPath:self.filePathToDeleteImage error:&error];
     if (success) {
-//        UIAlertView *removedSuccessFullyAlert = [[UIAlertView alloc] initWithTitle:@"Congratulations:" message:@"Successfully removed" delegate:self cancelButtonTitle:@"Close" otherButtonTitles:nil];
-//        [removedSuccessFullyAlert show];
         NSLog(@"File successfully delete at: %@", self.filePathToDeleteImage);
     }
     else
@@ -117,11 +106,8 @@
     NSData *imageData = UIImagePNGRepresentation(image);
     [imageData writeToFile:savedImagePath atomically:NO];
     
-    //modelObject.addImageName = imageName;
-    //modelObject.addImagePath = savedImagePath;
     
     // Add to Realm with transaction
-    //NSString *str = [self.editDate.date descriptionWithLocale:[NSLocale currentLocale]];
     self.editDate.locale = [NSLocale currentLocale];
     
     [self.realmObject beginWriteTransaction];

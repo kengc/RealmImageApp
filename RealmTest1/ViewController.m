@@ -34,7 +34,6 @@
     
     self.tableView.allowsSelection = YES;
     
-    
     self.addObject = [AddModel allObjects]; // retrieves all Dogs from the default Realm
     
     self.objects = [[NSMutableArray alloc]init];
@@ -43,8 +42,6 @@
     
     [self populateObjectFromRealm];
 
-    //NSData *myData = [[[NSData alloc] initWithContentsOfFile:appFile] autorelease];
-    //[picker addAttachmentData:myData mimeType:@"image/png" fileName:@"savedImage"];
 }
 -(void)populateObjectFromRealm{
     
@@ -56,11 +53,6 @@
     for(AddModel *am in self.addObject){
         modelObject = am;
         NSString *appFile = [self.documentsDirectory stringByAppendingPathComponent:am.addImageName];
-        //NSLog(@"appFile: %@", appFile);
-        //NSData *myData = [[[NSData alloc] initWithContentsOfFile:appFile] autorelease];
-        //NSData *myData = [[NSData alloc] initWithContentsOfFile:appFile];
-        //NSLog(@"mydata: %@", myData);
-        //am.addImagePath = appFile;
         
         [self.realm beginWriteTransaction];
         modelObject.addImagePath = appFile;
@@ -94,8 +86,6 @@
     cell.imageCell.image = [UIImage imageWithData:myData];
     cell.imageTitleCell.text = om.addText;
     cell.imageDateDell.text = [om.addDate descriptionWithLocale:[NSLocale currentLocale]];
-    //[NSString stringWithFormat:@"%@", om.addDate];
-    
     
     return cell;
 }
@@ -137,11 +127,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        //[self.realm beginWriteTransaction];
-        //[self.objects removeObjectAtIndex:indexPath.row];
-        //[self.realm commitWriteTransaction];
- 
-        
+
         AddModel *modelDelete = self.objects[indexPath.row];
         
         [self.realm beginWriteTransaction];
